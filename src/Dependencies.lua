@@ -23,6 +23,9 @@ require 'src/StateMachine'
 require 'src/Util'
 
 -- game objects or attributes
+require 'src/Bat'
+
+require 'src/states/BaseState'
 
 -- states of the game
 
