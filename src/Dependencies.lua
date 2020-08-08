@@ -24,6 +24,7 @@ require 'src/Util'
 
 -- game objects or attributes
 require 'src/Bat'
+require 'src/Background'
 
 require 'src/states/BaseState'
 
