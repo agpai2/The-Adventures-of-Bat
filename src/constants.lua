@@ -1,5 +1,4 @@
 --[[
-    GD50
     The Adventures of Bat
 
     Author: Aniruddha Pai
