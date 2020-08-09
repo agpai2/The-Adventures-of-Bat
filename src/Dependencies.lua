@@ -17,6 +17,7 @@ Timer = require 'lib/knife.timer'
 
 -- constants or objects required for game creation
 require 'src/constants'
+require 'src/bat_defs'
 
 -- classes required for the game's back-end design
 require 'src/StateMachine'
