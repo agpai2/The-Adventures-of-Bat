@@ -52,7 +52,10 @@ function BatSelectState:init()
 end
 
 function BatSelectState:enter(params)
-
+    if params ~= nil then
+        self.backgroundFrame = params.backgroundFrame ~= nil and
+            params.backgroundFrame or math.random(1, 3)
+    end
 end
 
 function BatSelectState:update(dt)

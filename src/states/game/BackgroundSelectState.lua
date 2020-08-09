@@ -16,7 +16,9 @@ function BackgroundSelectState:init()
 end
 
 function BackgroundSelectState:enter(params)
-
+    if params ~= nil then
+        self.batType = params.batType
+    end
 end
 
 function BackgroundSelectState:update(dt)
@@ -41,7 +43,8 @@ function BackgroundSelectState:update(dt)
     if love.keyboard.wasPressed('return') or love.keyboard.wasPressed('enter') then
         gSounds['confirm']:play()
         gStateMachine:change('start', {
-            backgroundFrame = self.currentBackground
+            backgroundFrame = self.currentBackground,
+            batType = self.batType
         })
     end
 end

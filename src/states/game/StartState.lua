@@ -48,7 +48,17 @@ function StartState:init()
 end
 
 function StartState:enter(params)
+    if params ~= nil then
+        self.background.backgroundFrame = params.backgroundFrame ~= nil and
+            params.backgroundFrame or math.random(1, 3)
 
+        self.bat.animations = params.batType ~= nil and
+            self.bat:createAnimations(BAT_DEFS[BAT_IDS[params.batType]].animations) or
+                self.bat:createAnimations(BAT_DEFS[BAT_IDS[1]].animations)
+
+        self.bat.type = params.batType
+        self.bat:changeAnimation('fly-' .. self.bat.direction)
+    end
 end
 
 function StartState:update(dt)
