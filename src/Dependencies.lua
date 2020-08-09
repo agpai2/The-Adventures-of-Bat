@@ -21,6 +21,7 @@ require 'src/constants'
 -- classes required for the game's back-end design
 require 'src/StateMachine'
 require 'src/Util'
+require 'src/Animation'
 
 -- game objects or attributes
 require 'src/Bat'
