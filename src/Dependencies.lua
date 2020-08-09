@@ -31,9 +31,18 @@ require 'src/Background'
 require 'src/states/BaseState'
 
 -- states of the game
+require 'src/states/game/StartState'
+require 'src/states/game/BackgroundSelectState'
+require 'src/states/game/BatSelectState'
+require 'src/states/game/PlayState'
+require 'src/states/game/EndState'
 
 gStateMachine = StateMachine {
-
+    ['start'] = function() return StartState() end,
+    ['background-select'] = function() return BackgroundSelectState() end,
+    ['bat-select'] = function() return BatSelectState() end,
+    ['play'] = function() return PlayState() end,
+    ['end'] = function() return EndState() end
 }
 
 gTextures = {
