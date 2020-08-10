@@ -16,6 +16,7 @@ function PlayState:init()
     self.background = Background()
 
     self.distance = 0
+    self.points = 0
     self.timer = 0
 
     self.coins = {}
@@ -87,6 +88,43 @@ function PlayState:update(dt)
         self.timer = 0
         spawnTimer = math.random() * 1.5 + 1.5
     end
+
+    for k, coin in pairs(self.coins) do
+        coin:changeAnimation('rotate')
+        --coin:update(dt)
+
+        if coin:collides(self.bat) then
+            coin.remove = true
+            self.points = self.points + 1
+            gSounds['confirm']:play()
+        end
+
+        if coin.remove then
+            table.remove(self.coins, k)
+        end
+
+        coin:update(dt)
+    end
+
+    for k, obstacle in pairs(self.obstacles) do
+        obstacle:changeAnimation('animate')
+        --obstacle:update(dt)
+
+        if obstacle:collides(self.bat) then
+            gStateMachine:change('end', {
+                backgroundFrame = self.background.backgroundFrame,
+                batType = self.bat.type,
+                distance = math.floor(self.distance),
+                coins = self.points
+            })
+        end
+
+        if obstacle.remove then
+            table.remove(self.obstacles, k)
+        end
+
+        obstacle:update(dt)
+    end
 end
 
 function PlayState:render()
@@ -108,4 +146,6 @@ function PlayState:render()
 
     love.graphics.printf('DISTANCE : ' .. tostring(math.floor(self.distance)),
         5, 5, VIRTUAL_WIDTH, 'left')
+    love.graphics.printf('COINS: ' .. tostring(self.points), 5, 15,
+        VIRTUAL_WIDTH, 'left')
 end
